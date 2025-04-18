@@ -1,1 +1,15 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<h2>{{ title }}</h2>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <button type="submit" class="btn btn-primary">حفظ</button>
+    <a href="{% url 'dashboard' %}" class="btn btn-secondary">إلغاء</a>
+</form>
+{% endblock %}
 
