@@ -1,1 +1,14 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}تسجيل حساب جديد{% endblock %}
+
+{% block content %}
+<h2>تسجيل حساب جديد</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <button type="submit" class="btn btn-primary">تسجيل</button>
+</form>
+{% endblock %}
 
