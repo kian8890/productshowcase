@@ -1,1 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}حذف مستخدم{% endblock %}
+
+{% block content %}
+<h2>هل أنت متأكد من حذف المستخدم {{ user.username }}؟</h2>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">نعم، احذف</button>
+    <a href="{% url 'dashboard' %}" class="btn btn-secondary">إلغاء</a>
+</form>
+{% endblock %}
 
