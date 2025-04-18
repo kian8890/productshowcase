@@ -1,1 +1,63 @@
+{% extends 'base.html' %}
+
+{% block title %}لوحة تحكم الأدمن{% endblock %}
+
+{% block content %}
+<h2>لوحة تحكم الأدمن</h2>
+
+<h3>المستخدمون</h3>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>اسم المستخدم</th>
+            <th>البريد الإلكتروني</th>
+            <th>عدد المنتجات</th>
+            <th>الإجراءات</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for user in users %}
+        <tr>
+            <td>{{ user.username }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.products.count }}</td>
+            <td>
+                {% if user != request.user %}
+                <a href="{% url 'delete_user' user.id %}" class="btn btn-sm btn-danger">حذف المستخدم</a>
+                {% else %}
+                (أنت)
+                {% endif %}
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<h3>جميع المنتجات</h3>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>المالك</th>
+            <th>العنوان</th>
+            <th>السعر</th>
+            <th>تاريخ الإضافة</th>
+            <th>الإجراءات</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for product in products %}
+        <tr>
+            <td>{{ product.owner.username }}</td>
+            <td>{{ product.title }}</td>
+            <td>{{ product.price }} ر.س</td>
+            <td>{{ product.created_at|date:"Y-m-d" }}</td>
+            <td>
+                <a href="{% url 'product_edit' product.pk %}" class="btn btn-sm btn-info">تعديل</a>
+                <a href="{% url 'product_delete' product.pk %}" class="btn btn-sm btn-danger">حذف</a>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
 
