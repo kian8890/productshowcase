@@ -1,1 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}لوحة تحكم المستخدم{% endblock %}
+
+{% block content %}
+<h2>منتجاتي</h2>
+<a href="{% url 'product_add' %}" class="btn btn-success mb-3">إضافة منتج جديد</a>
+
+{% if products %}
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>الصورة</th>
+            <th>العنوان</th>
+            <th>الوصف</th>
+            <th>السعر</th>
+            <th>تاريخ الإضافة</th>
+            <th>إجراءات</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for product in products %}
+        <tr>
+            <td>
+                {% if product.image %}
+                    <img src="{{ product.image.url }}" width="80" />
+                {% else %}
+                    لا توجد صورة
+                {% endif %}
+            </td>
+            <td>{{ product.title }}</td>
+            <td>{{ product.description|truncatewords:10 }}</td>
+            <td>{{ product.price }} ر.س</td>
+            <td>{{ product.created_at|date:"Y-m-d" }}</td>
+            <td>
+                <a href="{% url 'product_edit' product.pk %}" class="btn btn-sm btn-info">تعديل</a>
+                <a href="{% url 'product_delete' product.pk %}" class="btn btn-sm btn-danger">حذف</a>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>لم تقم بإضافة أي منتجات بعد.</p>
+{% endif %}
+{% endblock %}
 
