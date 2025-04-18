@@ -1,1 +1,1 @@
-.
+web: gunicorn productshowcase.wsgi
