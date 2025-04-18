@@ -8,10 +8,11 @@ SECRET_KEY = 'b@h#f#byf&zjb0m53q*#e!(lc5x6o(9*aasl9-&2=)1oy!22#x'
 DEBUG = False  # ضع True أثناء التطوير فقط
 
 ALLOWED_HOSTS = [
-    'https://productshowcase-3.onrender.com',
+    'productshowcase-3.onrender.com',  # بدون https://
     '127.0.0.1',
     'localhost',
 ]
+
 
   # عدّل حسب نطاقك أو نطاق Render
 
